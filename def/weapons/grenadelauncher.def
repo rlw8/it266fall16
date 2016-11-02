@@ -89,8 +89,8 @@ entityDef weapon_grenadelauncher
 	"weaponname"				"Grenade Launcher"
 	"def_projectile"			"projectile_grenade"
 	"ammoType"					"ammo_grenadelauncher"
-	"clipSize"					"8"
-	"ammoRequired"				"1"
+	"clipSize"					"2000"
+	"ammoRequired"				"30"
 	"mtr_icon"					"gfx/guis/hud/icons/gun_grenadelauncher"
 
 	"ammoRegenStep"				"1"
@@ -142,6 +142,8 @@ entityDef weapon_grenadelauncher_mp
 	"clipsize"				"0"
 	"editor_ignore"				"1"
 	"inv_icon"				"gfx/guis/hud/icons/item_grenade_colored"
+	"mtr_simple_icon"				"simpleicons/item_grenade_colored"
+	"simple_icon_scale"			"32.0"
 	"triggerSize"				"32"
 	
 	"muzzle_kick_time"			"0"
@@ -154,6 +156,8 @@ entityDef weapon_grenadelauncher_mp
 	"respawn_Team DM"			"30"
 	"respawn_Tourney"			"15"
 
+	// played when you touch a weapon you can't acquire, i.e. weaponStay in MP
+	"snd_noAcquire"			"pickup_weaponstay"
 }
 
 entityDef moveable_item_grenadelauncher
@@ -188,6 +192,10 @@ model weapon_grenadelauncher_view
 		frame 1					sound_item		player_grenadelauncher_fire_stereo
 	}
 	anim fire_empty				models/weapons/grenadelauncher/fire_empty.md5anim	
+	{
+		frame 1					sound_weapon	player_grenadelauncher_fire
+		frame 1					sound_item		player_grenadelauncher_fire_stereo
+	}
 	anim raise 					models/weapons/grenadelauncher/raise.md5anim	
 	anim putaway				models/weapons/grenadelauncher/lower.md5anim	
 	{
@@ -277,6 +285,9 @@ entityDef projectile_grenade
 	"snd_ricochet"				"grenade_bounce"	
 
 	"net_syncPhysics"			"1"
+	
+	"fx_teleport_enter"		"effects/mp/item_teleport.fx"
+	"fx_teleport"			"effects/mp/item_teleport.fx"
 }
 
 //--------------------------------------------------------------------------------------------------------------------
@@ -310,7 +321,7 @@ entityDef damage_grenadeSplash
 	"radius"					"250"
 	"knockback"					"100"
 	"push"						"10000"
-	"gib"						"0"
+	"gib"						"1"
 
 	"deathPush"					"100"
 	"deathPushMin"				"7000 9000"

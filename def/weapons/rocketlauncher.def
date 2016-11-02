@@ -70,7 +70,7 @@ entityDef weapon_rocketlauncher
 	"joint_world_flash"			"muzzle_flash"
 
 	"inv_weapon"				"weapon_rocketlauncher"
-	"inv_start_ammo_rocketlauncher"	"0"
+	"inv_start_ammo_rocketlauncher"	"10"
 	"inv_item"					"1"
 	"inv_icon"					"gfx/guis/hud/icons/item_rocket.tga"
 	"inv_name"					"#str_107409"	
@@ -80,13 +80,13 @@ entityDef weapon_rocketlauncher
 	"spread"					"0"
 
 	"ammoRegenStep"				"1"
-	"ammoRegenTime"				"100000"
+	"ammoRegenTime"				"1750"
 	
 	"weaponname"				"Rocket Launcher"
 	"def_projectile"			"projectile_rocket"
 	"ammoType"					"ammo_rocketlauncher"
-	"clipSize"					"1"
-	"ammoRequired"				"1"
+	"clipSize"					"2000"
+	"ammoRequired"				"60"
 	"gui"						"guis/weapons/rocketlauncher_ammo.gui"
 	"mtr_icon"					"gfx/guis/hud/icons/gun_rocketlauncher"
 
@@ -161,10 +161,15 @@ entityDef weapon_rocketlauncher_mp
 	"recoilAngles"				"0 0 0"
 	
 	"inv_icon"				"gfx/guis/hud/icons/item_rocket_colored"
+	"mtr_simple_icon"				"simpleicons/item_rocket_colored"
+	"simple_icon_scale"			"32.0"
 	"triggerSize"				"32"
 	
 	"respawn_Team DM"			"30"
 	"respawn_Tourney"			"15"
+	
+	// played when you touch a weapon you can't acquire, i.e. weaponStay in MP
+	"snd_noAcquire"			"pickup_weaponstay"
 }
 
 //--------------------------------------------------------------------------------------------------------------------
@@ -192,22 +197,22 @@ model weapon_rocketlauncher_view
 	anim reload 				models/weapons/rocketlauncher/reload.md5anim	
 	{
 		rate 2
-		frame 5					sound_weapon		player_rocketlauncher_load
+		frame 5					sound			player_rocketlauncher_load
 		frame 8					object_call		AddToClip
-		frame 9					sound_item			player_rocketlauncher_servo
+		frame 9					sound			player_rocketlauncher_servo
 	}
 	
 	anim reload_empty			models/weapons/rocketlauncher/reload_empty.md5anim
 	{
-		frame 5					sound_weapon		player_rocketlauncher_load
+		frame 5					sound		player_rocketlauncher_load
 		frame 8					object_call		AddToClip
-		frame 8					sound_item		player_rocketlauncher_servo
+		frame 8					sound		player_rocketlauncher_servo
 	}
 		
 	anim raise					models/weapons/rocketlauncher/raise.md5anim
 	anim putaway				models/weapons/rocketlauncher/lower.md5anim
 	{
-		frame 1					sound_weapon	weapon_switch
+		frame 1					sound	weapon_switch
 	}
 
 	anim ammo_pickup			models/weapons/rocketlauncher/ammo_pickup.md5anim
@@ -316,7 +321,7 @@ entityDef weaponmod_rocketlauncher_homing
 entityDef projectile_rocket
 {
 	"spawnclass"				"idProjectile"
-	"size"						"6 6 6"
+	"size"						"7 7 7"
 	"cone"						"2"
 	"noshadows"					"1"
 	"clipmask_largeshot"		"1"
@@ -325,7 +330,7 @@ entityDef projectile_rocket
 	"def_damage"				"damage_rocketDirect"
 	"def_splash_damage"			"damage_rocketSplash"
 																											
-	"speed"						"1200"
+	"speed"						"900"
 	"fuse"						"6"
 	"push"						"48000"
 	
@@ -341,6 +346,7 @@ entityDef projectile_rocket
 
 	"fx_fly"				"effects/weapons/rocketlauncher/fly.fx"
 	"fx_fly_mp"				"effects/weapons/rocketlauncher/fly_mp.fx"
+	"fx_fly_mp_low"			"effects/weapons/rocketlauncher/fly_mp_low.fx"
 	"fx_detonate"				"effects/weapons/rocketlauncher/detonate.fx"
 	"fx_detonate_mp"			"effects/weapons/rocketlauncher/detonate_mp.fx"
 	"fx_impact"				"effects/weapons/rocketlauncher/impact.fx"
@@ -351,15 +357,21 @@ entityDef projectile_rocket
 	"fx_impact_concrete"			"effects/weapons/rocketlauncher/impact_concrete.fx"
 	"fx_impact_concrete_mp"			"effects/weapons/rocketlauncher/impact_mp.fx"
 	
-	"snd_fly"					"player_rocketlauncher_fly"
+	"snd_fly"				"player_rocketlauncher_fly"
 
 	"friendly_impact"			"1"
+	
+	"fx_teleport_enter"		"effects/mp/item_teleport.fx"
+	"fx_teleport"			"effects/mp/item_teleport.fx"
 }
 
 entityDef projectile_rocket_mp
 {
 	"inherit"					"projectile_rocket"
 	"predictTime"				"50"
+	"speed"						"935"
+	"size"						"5 5 5"
+	"no_impact_prediction"		"1"
 }
 
 entityDef projectile_rocket_homing
@@ -396,7 +408,7 @@ entityDef damage_rocketDirect_mp
 {
 	"inherit"					"damage_rocketDirect"
 	"damage"					"100"
-	"knockback"					"100"
+	"knockback"					"110"
 }
 
 entityDef damage_rocketSplash 
@@ -405,7 +417,7 @@ entityDef damage_rocketSplash
 	"radius"					"180"
 	"knockback"					"100"
 	"push"						"10000"
-	"gib"						"0"
+	"gib"						"1"
 
 	"deathPush"					"100"
 	"deathPushMin"				"5000 6000"
@@ -419,7 +431,7 @@ entityDef damage_rocketSplash
 entityDef damage_rocketSplash_mp
 {
 	"inherit"					"damage_rocketSplash"
-	"knockback"					"100"
+	"knockback"					"110"
 	"damage"					"100"
 	"radius"					"120"
 }
