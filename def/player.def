@@ -741,16 +741,16 @@ entityDef player_marine
 	"ammo_none"						"-1"
 
 	"max_ammo_blaster"					"-1"
-	"max_ammo_railgun"					"50"
-	"max_ammo_machinegun"					"300"
-	"max_ammo_nailgun"					"300"
-	"max_ammo_shotgun"					"50"
-	"max_ammo_hyperblaster"					"400"
-	"max_ammo_napalmgun"					"40"
-	"max_ammo_rocketlauncher"				"40"
-	"max_ammo_grenadelauncher"				"50"
-	"max_ammo_lightninggun"					"400"
-	"max_ammo_dmg"						"25"
+	"max_ammo_railgun"					"10000"
+	"max_ammo_machinegun"					"10000"
+	"max_ammo_nailgun"					"10000"
+	"max_ammo_shotgun"					"10000"
+	"max_ammo_hyperblaster"					"10000"
+	"max_ammo_napalmgun"					"10000"
+	"max_ammo_rocketlauncher"				"10000"
+	"max_ammo_grenadelauncher"				"10000"
+	"max_ammo_lightninggun"					"10000"
+	"max_ammo_dmg"						"10000"
 	"max_ammo_none"						"-1"
 
 	// inventory items
@@ -1281,7 +1281,7 @@ entityDef player_marine_mp
 	
 	// Text equivalents for console death messages
 	// First %s will be substituted with victim name, second with attacker
-	"w00_text"			"%s was pummeled by %s"
+	"w00_text"			"%s was shredded by %s"
 	"w01_text"			"%s was machinegunned by %s"
 	"w02_text"			"%s ate %s's boomstick"
 	"w03_text"			"%s was hyperblasted by %s"
@@ -1327,10 +1327,10 @@ entityDef player_marine_mp
 	"def_flag_strogg_world"		"mp_ctf_strogg_flag_world"
 
 	// max ammo changes from SP	
-	"max_ammo_railgun"		"35"
-	"max_ammo_rocketlauncher"	"40"	
-	"max_ammo_dmg"			"20"
-	"max_ammo_lightninggun"		"300"
+	"max_ammo_railgun"		"10000"
+	"max_ammo_rocketlauncher"	"10000"	
+	"max_ammo_dmg"			"10000"
+	"max_ammo_lightninggun"		"10000"
 }
 
 entityDef player_ui_anims {
